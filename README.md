@@ -8,7 +8,13 @@ Docker-compose (https://docs.docker.com/compose/install/)
 
 ## Setup
 
-* run `docker-compose run --rm --no-deps fullapp rails new . --force --database=postgresql`
+* run `git clone git@github.com:EvanBrightside/fullapp.git`
+
+* run `cd fullapp`
+
+* run `docker-compose run --rm --no-deps fullapp rails new . --force --skip-test --javascript esbuild --css tailwind --database=postgresql`
+
+* run `docker-compose run --rm -e RAILS_ENV=development fullapp bundle add foreman"`
 
 * update your `/config/database.yml` with:
 
@@ -41,10 +47,8 @@ Docker-compose (https://docs.docker.com/compose/install/)
 
 * run `docker-compose run --rm -e RAILS_ENV=development fullapp rake db:create`
 
-* add `bundle exec rake db:migrate db:seed` to your `docker-compose-entrypoint.sh`
-
 * run `docker-compose up fullapp`
 
 ## Usage
 
-* <http://0.0.0.0:5011>
+* <http://0.0.0.0:3000>

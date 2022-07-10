@@ -25,9 +25,9 @@ services:
       dockerfile: Dockerfile
     image: fullapp:latest
     entrypoint: /fullapp/docker-compose-entrypoint.sh
-    command: ['rails', 'server', '-b', '0.0.0.0', '-p', '5011']
+    command: bash -c "foreman start -f Procfile.dev"
     ports:
-      - 5011:5011
+      - 3000:3000
     volumes:
       - ./:/fullapp
     stdin_open: true
@@ -35,7 +35,7 @@ services:
     environment:
       - "RAILS_LOG_TO_STDOUT=true"
       - "RAILS_ENV=development"
-      - "APP_URL_HOST=http://0.0.0.0:5011"
+      - "APP_URL_HOST=http://0.0.0.0:3000"
     depends_on:
       - redis
       - postgres
