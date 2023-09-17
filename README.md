@@ -14,7 +14,9 @@ Docker-compose (https://docs.docker.com/compose/install/)
 
 * run `docker-compose run --rm --no-deps fullapp rails new . --force --skip-test --javascript esbuild --css tailwind --database=postgresql`
 
-* run `docker-compose run --rm -e RAILS_ENV=development fullapp bundle add foreman"`
+* run `docker-compose build`
+
+* run `docker-compose run --rm -e RAILS_ENV=development fullapp bundle add foreman`
 
 * update your `/config/database.yml` with:
 
@@ -43,7 +45,13 @@ Docker-compose (https://docs.docker.com/compose/install/)
     password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   ```
 
-* run `docker-compose build`
+* update your `/Procfile.dev` with:
+
+  ```text
+  web: bin/rails server -b 0.0.0.0 -p 3000
+  js: yarn build --watch
+  css: yarn build:css --watch
+  ```
 
 * run `docker-compose run --rm -e RAILS_ENV=development fullapp rake db:create`
 
