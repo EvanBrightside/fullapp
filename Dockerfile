@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-slim-bullseye
+FROM ruby:3.3.0-slim-bullseye
 
 # Minimal requirements to run a Rails app
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
@@ -35,7 +35,7 @@ ENV BUNDLE_PATH=/bundle \
     GEM_HOME=/bundle
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-ENV BUNDLER_VERSION 2.3.17
+ENV BUNDLER_VERSION 2.3.22
 RUN gem update --system && gem install bundler -v $BUNDLER_VERSION
 RUN bundle install
 
