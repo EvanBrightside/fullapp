@@ -53,6 +53,8 @@ Docker-compose (https://docs.docker.com/compose/install/)
   css: yarn build:css --watch
   ```
 
+* run `docker-compose build --no-cache`
+
 * run `docker-compose run --rm -e RAILS_ENV=development fullapp rake db:create`
 
 * run `docker-compose up fullapp`
